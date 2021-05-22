@@ -4,17 +4,25 @@ import {loadMovies} from './actions/moviesAction'
 import Nav from './components/Nav'
 import GlobalStyles from './GlobalStyles'
 import Search from './components/Search'
+import { BrowserRouter as Router } from "react-router-dom";
+import Content from "./Content"
+
+
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadMovies());
   })
   return (
-    <div>
-      <GlobalStyles/>
-     <Nav/>
-     <Search/>
-    </div>
+    <Router>
+      <div>
+        <GlobalStyles/>
+        <Nav/>
+        <Search/>
+        <Content/>
+      </div>
+    </Router>
   );
 }
 
