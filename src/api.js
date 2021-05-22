@@ -7,7 +7,7 @@ const BASE_IMG_URL = "https://image.tmdb.org/t/p/"
 const KEY = "6579bc9ba84565fc456dc0712a6a43bf"
 
 //Popular Games
-const POPULAR_MOVIES = "movie/popular?api_key=6579bc9ba84565fc456dc0712a6a43bf"
+const POPULAR_MOVIES = `movie/popular?api_key=${KEY}`
 
 export const popularMoviesURL = () => `${BASE_URL}${POPULAR_MOVIES}`
 
