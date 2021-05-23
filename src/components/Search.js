@@ -14,7 +14,7 @@ function Search() {
 export default Search
 
 const StyledSearch = styled.div`
-
+    
     input{
         display: block;
         width: 100%;

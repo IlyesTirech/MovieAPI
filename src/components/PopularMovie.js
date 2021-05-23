@@ -3,8 +3,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { loadMovies } from '../actions/moviesAction';
 import {imageURL} from "../api"
-import * as icon from 'react-icons/bs'
 import StarRatingComponent from 'react-star-rating-component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const PopularMovie = ({movie}) => {
@@ -36,7 +36,6 @@ const PopularMovie = ({movie}) => {
         background-color: #252525f4;
     }
         width: 80%;
-        height: 90%;
         background-color: #3d3d3de2;
         padding: 1rem 2rem;
         display: flex;
@@ -58,19 +57,6 @@ const PopularMovie = ({movie}) => {
 `
                 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const StarComp = ({rating}) => {
     const halfStar = () =>{ 
         if(Math.round(rating) < rating - 0.25){
@@ -84,24 +70,20 @@ const StarComp = ({rating}) => {
         <StarDiv>
             <StarRatingComponent 
             name="rate1" 
-            starCount={halfStar ? Math.round(rating/2)-1 : Math.round(rating/2)}
+            starCount={5}
             editing={false}
-            renderStarIcon={() => <icon.BsStarFill/>}
+            isHalf={true}
+            emptyIcon={<FontAwesomeIcon icon={["far", "star"]} />}
+            halfIcon={<FontAwesomeIcon icon={["fa", "star-half"]}/>}
+            fullIcon={<FontAwesomeIcon icon={["fa", "star"]}/>}
+            activeColor="#ffd700"
             value={rating/2}
-            />
-            {/* {halfStar ?
-            
-            <StarRatingComponent 
-            name="rate2" 
-            starCount={1}
-            editing={false}
-            renderStarIcon={() => <icon.BsStarHalf/>}
-            /> : null} */}
-            
-       
+            />       
         </StarDiv>
     )
 }
+
+
 
 
 const StarDiv = styled.div`

@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react'
+import {useMeasure} from 'react-use'
 import {useDispatch, useSelector} from 'react-redux'
 import {loadMovies} from '../actions/moviesAction'
 import styled from 'styled-components'
@@ -12,6 +13,8 @@ const Home = () => {
     useEffect(() => {
       dispatch(loadMovies());
     },[])
+    const [ref, { x, y, width, height, top, right, bottom, left }] = useMeasure();
+    const itemCount = Math.floor(width / 350)
     //GET DATA
     const {popular,upComing,topRated} = useSelector((state) => state.movies)
         
@@ -20,9 +23,9 @@ const Home = () => {
         <MovieList>
           <h1>Popular Movies</h1>
           { popular ?
-            <PopularMoviesStyle>
+            <PopularMoviesStyle ref ={ref}>
               
-            {popular.map(movie => (
+            {popular.slice(0, itemCount).map(movie => (
               <PopularMovie movie={movie} id={movie.id}
               image={movie.poster_path} key={movie.id}
               />
@@ -38,7 +41,7 @@ const Home = () => {
           { upComing ?
             <PopularMoviesStyle>
               
-            {upComing.map(movie => (
+            {upComing.slice(0, itemCount).map(movie => (
               <PopularMovie movie={movie} id={movie.id}
               image={movie.poster_path} key={movie.id}
               />
@@ -54,7 +57,7 @@ const Home = () => {
           { topRated ?
             <PopularMoviesStyle>
               
-            {topRated.map(movie => (
+            {topRated.slice(0, itemCount).map(movie => (
               <PopularMovie movie={movie} id={movie.id}
               image={movie.poster_path} key={movie.id}
               />
@@ -86,7 +89,7 @@ const Home = () => {
   `
 
   const PopularMoviesStyle = styled.div`
-  min-height: 80vh;
+  min-height: 30vh;
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
   padding: 20px;
