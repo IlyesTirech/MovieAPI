@@ -3,7 +3,7 @@ import {useMeasure} from 'react-use'
 import {useDispatch, useSelector} from 'react-redux'
 import {loadMovies} from '../actions/moviesAction'
 import styled from 'styled-components'
-import * as icon from 'react-icons/bs'
+import { Link} from "react-router-dom";
 //Components
 import PopularMovie from '../components/PopularMovie'
 
@@ -30,7 +30,7 @@ const Home = () => {
     return(
       <>
         <MovieList>
-          <h1>Popular Movies</h1>
+          <Link to="/popular"><h2>Popular Movies</h2></Link>
           { popular ?
             <PopularMoviesStyle ref ={ref}>
              {/* Slices the array such that only the correct amount of movies is printed (1 row) */}
@@ -45,7 +45,7 @@ const Home = () => {
             </>}
         </MovieList>
         <MovieList>
-          <h1>Upcoming Movies</h1>
+          <Link to="/upcoming"><h2>Up and Coming Movies</h2></Link>
           { upComing ?
             <PopularMoviesStyle>
             {/* Slices the array such that only the correct amount of movies is printed (1 row) */}
@@ -60,7 +60,7 @@ const Home = () => {
             </>}
         </MovieList>
         <MovieList>
-          <h1>Top Rated Movies</h1>
+          <Link to="/toprated"><h2>Top Rated Movies</h2></Link>
           { topRated ?
             <PopularMoviesStyle>
             {/* Slices the array such that only the correct amount of movies is printed (1 row) */}
@@ -80,13 +80,13 @@ const Home = () => {
 
   const MovieList = styled.div`
 
-  margin: 20px auto;
-  h1{
+  margin: 5px auto;
+  h2{
     margin: 0 auto;
     text-align: center;
-    
+    text-decoration: none;
+    list-style: none;
     width: 25%;
-    padding: 5px;
     color: #ebece7;
   }
   padding: 0rem 5rem;
@@ -98,11 +98,12 @@ const Home = () => {
 
 const PopularMoviesStyle = styled.div`
 
-  margin: 20px auto;
+  margin: 10px auto;
   background-color: #5b74aaac;
   min-height: 40vh;
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+  gap: 5px;
   padding: 40px;
   align-items: center;
   justify-content: center;
