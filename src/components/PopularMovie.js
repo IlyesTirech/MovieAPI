@@ -9,8 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const PopularMovie = ({movie}) => {
     const {title, release_date, backdrop_path, vote_average, vote_count} = movie
-    const imageSource = imageURL
-    
+       
     return(
         <PopularMovieItem>
             <h3>{title}</h3>
@@ -36,6 +35,7 @@ const PopularMovie = ({movie}) => {
         background-color: #252525f4;
     }
         width: 80%;
+        height: 100%;
         background-color: #3d3d3de2;
         padding: 1rem 2rem;
         display: flex;
