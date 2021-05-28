@@ -1,7 +1,8 @@
 const initState = { //initial state of the reducer
     popular: [],
     topRated: [],
-    upComing: []
+    upComing: [],
+    searched: [],
 
 }
 
@@ -13,6 +14,11 @@ const moviesReducer = (state = initState, action) => {
                 topRated: action.payload.topRated,
                 upComing: action.payload.upComing,
             } //sending it to update popular state
+        case "FETCH_SEARCHED":
+            return{
+                ...state,
+                searched: action.payload.searched,
+            }
         default:
         return  {...state}
     }

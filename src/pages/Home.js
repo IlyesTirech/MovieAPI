@@ -5,7 +5,7 @@ import {loadMovies} from '../actions/moviesAction'
 import styled from 'styled-components'
 import { Link} from "react-router-dom";
 //Components
-import PopularMovie from '../components/PopularMovie'
+import Movies from '../components/Movies'
 
 const Home = () => {
     //FETCH Movies
@@ -30,45 +30,54 @@ const Home = () => {
     return(
       <>
         <MovieList>
-          <Link to="/popular"><h2>Popular Movies</h2></Link>
+          <Link to="/popular">
+            <h2>Popular Movies</h2>
+            <h4>View More:</h4>
+          </Link>
           { popular ?
-            <PopularMoviesStyle ref ={ref}>
+            <MoviesStyle ref ={ref}>
              {/* Slices the array such that only the correct amount of movies is printed (1 row) */}
             {popular.slice(0, itemCount()).map(movie => (
-              <PopularMovie movie={movie} key={movie.id}
+              <Movies movie={movie} key={movie.id}
               />
               ))}
-          </PopularMoviesStyle>
+          </MoviesStyle>
             : 
             <>
             <h2> No movies imported </h2>
             </>}
         </MovieList>
         <MovieList>
-          <Link to="/upcoming"><h2>Up and Coming Movies</h2></Link>
+          <Link to="/upcoming">
+            <h2>Up and Coming Movies</h2>
+            <h4>View More:</h4>
+          </Link>
           { upComing ?
-            <PopularMoviesStyle>
+            <MoviesStyle>
             {/* Slices the array such that only the correct amount of movies is printed (1 row) */}
             {upComing.slice(0, itemCount()).map(movie => (
-              <PopularMovie movie={movie} key={movie.id}
+              <Movies movie={movie} key={movie.id}
               />
               ))}
-          </PopularMoviesStyle>
+          </MoviesStyle>
             : 
             <>
             <h2> No movies imported </h2>
             </>}
         </MovieList>
         <MovieList>
-          <Link to="/toprated"><h2>Top Rated Movies</h2></Link>
+          <Link to="/toprated">
+            <h2>Top Rated Movies</h2>
+            <h4>View More:</h4>
+          </Link>
           { topRated ?
-            <PopularMoviesStyle>
+            <MoviesStyle>
             {/* Slices the array such that only the correct amount of movies is printed (1 row) */}
             {topRated.slice(0, itemCount()).map(movie => (
-              <PopularMovie movie={movie} key={movie.id}
+              <Movies movie={movie} key={movie.id}
               />
               ))}
-          </PopularMoviesStyle>
+          </MoviesStyle>
             : 
             <>
             <h2> No movies imported </h2>
@@ -79,36 +88,35 @@ const Home = () => {
 }
 
   const MovieList = styled.div`
-
-  margin: 5px auto;
-  h2{
-    margin: 0 auto;
-    text-align: center;
-    text-decoration: none;
-    list-style: none;
-    width: 25%;
-    color: #ebece7;
-  }
-  padding: 0rem 5rem;
-  h2{
-    padding: 5rem 0rem;
-  }
  
+
+
+  h2{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f3ce13;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h4{
+    color: white;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: underline;
+  }
   `
 
-const PopularMoviesStyle = styled.div`
-
-  margin: 10px auto;
-  background-color: #5b74aaac;
+const MoviesStyle = styled.div`
   min-height: 40vh;
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-  gap: 5px;
   padding: 40px;
   align-items: center;
   justify-content: center;
   `
-
 export default Home
 
 

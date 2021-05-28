@@ -5,38 +5,34 @@ import { loadMovies } from '../actions/moviesAction';
 import {imageURL} from "../api"
 import StarRatingComponent from 'react-star-rating-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {useDispatch} from 'react-redux'
+import {loadDetail} from '../actions/detailAction'
+import {Link} from 'react-router-dom'
 
+const Movies = ({movie}) => {
 
-const PopularMovie = ({movie}) => {
-    const {title, release_date, backdrop_path, vote_average, vote_count} = movie
-       
+    const dispatch = useDispatch();
+    const loadDetailHandler = () => {
+        dispatch(loadDetail(id))
+    }
+
+    const {title, release_date, backdrop_path, vote_average, vote_count, id, genres} = movie
     return(
-        <PopularMovieItem>
+        <Link to={{pathname: `/details/${id}`}}>
+        <MoviesStyle onClick = { loadDetailHandler }>
             <h3>{title}</h3>
-            <img src={`https://image.tmdb.org/t/p/w200/${backdrop_path}`} alt={title} />
-            <p>({vote_count})</p>
-            <StarComp rating={vote_average}/>
-            <p>{release_date}</p>
-        </PopularMovieItem>
+            <img src={`https://image.tmdb.org/t/p/w300/${backdrop_path}`} alt={title} />
+           <StarComp rating={vote_average}/>
+            <p>Release Date: {release_date}</p>
+
+            
+        </MoviesStyle>
+        </Link>
     )
         }
 
-    const PopularMovieItem = styled.div`
-    -webkit-transition: background-color 2s ease-out;
-    -moz-transition: background-color 2s ease-out;
-    -o-transition: background-color 2s ease-out;
-    transition: background-color 2s ease-out;
+    const MoviesStyle = styled.div`
 
-    &:hover{
-        -webkit-transition: background-color 0.5s ease-out;
-        -moz-transition: background-color 0.5s ease-out;
-        -o-transition: background-color 0.5s ease-out;
-        transition: background-color 0.5s ease-out;
-        background-color: #252525f4;
-    }
-        width: 80%;
-        height: 100%;
-        background-color: #3d3d3de2;
         padding: 1rem 2rem;
         display: flex;
         flex-direction: column;
@@ -45,14 +41,17 @@ const PopularMovie = ({movie}) => {
         border-radius: 0.25rem;
         h3{
             padding: 1rem 0rem;
-            color: #dee1e4;
+            font-size: 20px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
             }
         img{
             border-radius: 5px;
             margin-bottom: 5px;
         }
         p{
-            color: #dee1e4;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
         }
 `
                 
@@ -95,4 +94,4 @@ const StarDiv = styled.div`
   `
  
 
-export default PopularMovie;
+export default Movies;

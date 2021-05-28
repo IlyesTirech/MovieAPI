@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {popularMoviesURL, topratedMoviesURL, upcomingMoviesURL} from '../api'
+import {popularMoviesURL, topratedMoviesURL, upcomingMoviesURL, searchMovieURL} from '../api'
 
 //ACTION CREATOR
 
@@ -19,3 +19,16 @@ import {popularMoviesURL, topratedMoviesURL, upcomingMoviesURL} from '../api'
     })
 }
 
+export const fetchSearched = (movie_name) => async (dispatch) => {
+
+    //Fetch
+    const searchedMovie = await axios.get(searchMovieURL(movie_name))
+
+    dispatch({
+        type: "FETCH_SEARCHED",
+        payload: {
+            searched: searchedMovie.data.results,
+        }
+    })
+
+}

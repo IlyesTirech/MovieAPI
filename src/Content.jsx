@@ -5,10 +5,11 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home"
 import About from "./pages/AboutPage";
 import Contact from "./pages/ContactPage";
-import Details from "./pages/DetailsPage";
 import Popular from "./pages/PopularPage";
 import TopRated from "./pages/TopRatedPage";
 import UpComing from "./pages/UpComingPage";
+import MovieDetails from './components/MovieDetails';
+import SearchedPage from './pages/SearchedPage';
 
 
 
@@ -27,8 +28,8 @@ const Content = () => {
                 <Route  path="/contact">
                     <Contact/>
                 </Route>
-                <Route  path="/details">
-                    <Details/>
+                <Route  path="/details/:id">
+                    <MovieDetails/>
                 </Route>
                 <Route  path="/popular">
                     <Popular/>
@@ -38,6 +39,9 @@ const Content = () => {
                 </Route>
                 <Route  path="/upcoming">
                     <UpComing/>
+                </Route>
+                <Route  path="/searched">
+                    <SearchedPage/>
                 </Route>
 
             </Switch>

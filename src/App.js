@@ -10,10 +10,12 @@ import Content from "./Content"
 
 
 function App() {
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadMovies());
   })
+  
   return (
     <Router>
       <div>
