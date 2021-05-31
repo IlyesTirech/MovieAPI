@@ -29,7 +29,7 @@ const MovieDetails = () => {
         dispatch(deleteDetail)
         dispatch(loadDetail(id));
       },[])
-
+      
     //Data
     const {image,movie, credits, videos} = useSelector(state => state.detail);
     
