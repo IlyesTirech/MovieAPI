@@ -15,3 +15,5 @@ export const fadeIn = {
         }
     }
 }
+
+//framer motion

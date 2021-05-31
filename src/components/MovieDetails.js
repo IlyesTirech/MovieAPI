@@ -9,14 +9,22 @@ import {useLocation} from 'react-router-dom'
 
 //ReactPlayer
 import ReactPlayer from 'react-player'
+import {useMeasure} from 'react-use'
 
 const MovieDetails = () => {
     
     const dispatch = useDispatch();
     const location = useLocation();
     const id = location.pathname.split("/")[2];
+    const [ref, { width}] = useMeasure();
     
-
+    const videoWidth = () => {
+        if(width > 640){
+            return 640;
+        }
+        return width-10;
+    }
+    console.log(videoWidth)
     useEffect(() => {
         dispatch(deleteDetail)
         dispatch(loadDetail(id));
@@ -41,7 +49,9 @@ const MovieDetails = () => {
                       {
                          
                           videos.results.slice(0,1).map(video =>(
-                            <ReactPlayer  url={`https://www.youtube.com/watch?v=${video.key}`}/>
+                              <PlayerWrapper ref={ref}>
+                            <ReactPlayer width={`${videoWidth()}px`} className='react_player' url={`https://www.youtube.com/watch?v=${video.key}`}/>
+                            </PlayerWrapper>
                           ))
                       }
                   </VideoStyle>
@@ -178,4 +188,9 @@ const VideoStyle = styled.div`
     display: flex;
     justify-content: center;
 `
+const PlayerWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    `
 export default MovieDetails

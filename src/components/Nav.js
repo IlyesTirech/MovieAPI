@@ -7,10 +7,8 @@ import {fadeIn} from '../animations'
 function Nav() {
     return (
         <StyledNav variants = {fadeIn} initial='hidden' animate="show">
-            <Link to='/'>
-            <div className="title">
+            <Link className='nav_title' to='/'>     
                 <h1>MovieDB</h1>
-            </div>
             </Link>
             
         </StyledNav>
@@ -20,17 +18,17 @@ function Nav() {
 export default Nav
 
 const StyledNav = styled(motion.div)`
-
     min-height: 10vh;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+   
     background-color:black ;
     color: white;
-    h1{
+    .nav_title{
         color: #f3ce13;
         font-family: 'Lobster', cursive;
-        margin-left: 10rem;
+        text-align: center;
     }
    
     
