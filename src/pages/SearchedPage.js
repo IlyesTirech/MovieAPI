@@ -3,22 +3,32 @@ import {useDispatch, useSelector} from 'react-redux'
 import {fetchSearched} from '../actions/moviesAction'
 import Movies from '../components/Movies'
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
+import {Redirect} from 'react-router-dom'
+
 const SearchedPage = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchSearched)
-        
-      },[])
-    const {popular,upComing,topRated,searched} = useSelector((state) => state.movies)
+    const {searched} = useSelector((state) => state.movies)
+    
     return (
-        <MoviesStyle>
-            {searched.map(movie => (
-                 <Movies movie={movie} key={movie.id}/>
-            ))}
-        </MoviesStyle>
+      <>
+      {
+        searched.length > 0 ?
+        <MoviesStyle variants = {fadeIn} initial='hidden' animate="show">
+        {searched.map(movie => (
+             <Movies movie={movie} key={movie.id}/>
+        ))}
+       </MoviesStyle>
+       :
+       <>
+        <Redirect to='/'/>
+       </>
+      }
+        
+        </>
     )
 }
-const MoviesStyle = styled.div`
+const MoviesStyle = styled(motion.div)`
   min-height: 30vh;
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(350px,1fr));

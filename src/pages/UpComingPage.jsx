@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { loadMovies } from "../actions/moviesAction"
 import {useDispatch, useSelector} from 'react-redux'
 import Movies from "../components/Movies"
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
 const UpComingPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -12,7 +14,7 @@ const UpComingPage = () => {
     const {upComing} = useSelector((state) => state.movies)
 
     return (
-        <UpcomingStyle>
+        <UpcomingStyle variants = {fadeIn} initial='hidden' animate="show">
 
             
         <h2>Upcoming Movies</h2>
@@ -35,7 +37,7 @@ const UpComingPage = () => {
 }
 
 
-const UpcomingStyle = styled.div`
+const UpcomingStyle = styled(motion.div)`
   h2{
     margin-top: 5rem;
     text-align: center;

@@ -1,57 +1,39 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
 
 function Nav() {
     return (
-        <StyledNav>
+        <StyledNav variants = {fadeIn} initial='hidden' animate="show">
+            <Link to='/'>
             <div className="title">
                 <h1>MovieDB</h1>
             </div>
-            <StyledAbout>
-                <h2>
-                    <Link to='/about'>
-                    About Us
-                    </Link>
-                </h2>
-                <h2>
-                <Link to='/contact'>
-                    Contact Us
-                    </Link>
-                </h2>
-            </StyledAbout>
+            </Link>
+            
         </StyledNav>
     )
 }
 
 export default Nav
 
-const StyledNav = styled.div`
+const StyledNav = styled(motion.div)`
 
     min-height: 10vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     background-color:black ;
     color: white;
     h1{
         color: #f3ce13;
         font-family: 'Lobster', cursive;
+        margin-left: 10rem;
     }
    
     
 `
 
-const StyledAbout = styled.div`
-width: 70%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    h2{
-        margin-left: 10rem;
-        color: white;
-        text-decoration: none;
-    }
-    
-    
-`
+

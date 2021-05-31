@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { loadMovies } from "../actions/moviesAction"
 import {useDispatch, useSelector} from 'react-redux'
 import Movies from "../components/Movies"
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
 const TopRatedPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -14,7 +16,7 @@ const TopRatedPage = () => {
     return (
         
 
-            <PopularPageStyle>
+            <PopularPageStyle variants = {fadeIn} initial='hidden' animate="show">
         <h2>Popular Movies</h2>
        
           { popular ?
@@ -36,7 +38,7 @@ const TopRatedPage = () => {
 }
 
 
-const PopularPageStyle = styled.div`
+const PopularPageStyle = styled(motion.div)`
   h2{
     margin-top: 5rem;
     text-align: center;

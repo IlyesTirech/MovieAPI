@@ -4,6 +4,8 @@ import { loadMovies } from "../actions/moviesAction"
 import {useDispatch, useSelector} from 'react-redux'
 import Movies from "../components/Movies"
 import { faDivide } from '@fortawesome/free-solid-svg-icons'
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
 const TopRatedPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -15,7 +17,7 @@ const TopRatedPage = () => {
     return (
       
 
-            <TopRatedStyle>
+            <TopRatedStyle variants = {fadeIn} initial='hidden' animate="show">
         <h2>Top Rated Movies</h2>
           { topRated ?
             <MoviesStyle>
@@ -35,7 +37,7 @@ const TopRatedPage = () => {
     )
 }
 
-const TopRatedStyle = styled.div`
+const TopRatedStyle = styled(motion.div)`
   h2{
     margin-top: 5rem;
     text-align: center;

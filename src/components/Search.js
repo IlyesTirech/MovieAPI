@@ -5,6 +5,8 @@ import { FiSearch } from "react-icons/fi";
 import {fetchSearched} from '../actions/moviesAction'
 import {useDispatch} from 'react-redux'
 import {Link, useHistory} from 'react-router-dom'
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
 
 const Search = () => {
     const dispatch = useDispatch();
@@ -17,8 +19,8 @@ const Search = () => {
     const submitSearch = (e) => {
         e.preventDefault()
         dispatch(fetchSearched(textInput))
+        history.push(`/searched:${textInput}`)
         setTextInput("")
-        history.push("/searched")
     }
 
    
@@ -26,22 +28,20 @@ const Search = () => {
    
     
     return (
-        <StyledSearch>
-            
+        <StyledSearch variants = {fadeIn} initial='hidden' animate="show">           
             <form>
             <input value={textInput} onChange={inputHandler} type="text" placeholder="Search For Movies..." />
             <Link to='/searched'>
             <button onClick={submitSearch} type="submit" >Search</button>
             </Link>
-            </form>
-              
+            </form>             
         </StyledSearch>
     )
 }
 
 export default Search
 
-const StyledSearch = styled.div`
+const StyledSearch = styled(motion.div)`
     margin-top: 1rem;
     margin-left: 10rem;
     margin-right: 10rem;

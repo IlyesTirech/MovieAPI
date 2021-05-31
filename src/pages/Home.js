@@ -2,7 +2,10 @@ import React,{useEffect} from 'react'
 import {useMeasure} from 'react-use'
 import {useDispatch, useSelector} from 'react-redux'
 import {loadMovies} from '../actions/moviesAction'
+//Style And Animations
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
+import {fadeIn} from '../animations'
 import { Link} from "react-router-dom";
 //Components
 import Movies from '../components/Movies'
@@ -28,8 +31,8 @@ const Home = () => {
     const {popular,upComing,topRated} = useSelector((state) => state.movies)
         
     return(
-      <>
-        <MovieList>
+      <div>
+        <MovieList  variants = {fadeIn} initial='hidden' animate="show">
           <Link to="/popular">
             <h2>Popular Movies</h2>
             <h4>View More:</h4>
@@ -47,7 +50,7 @@ const Home = () => {
             <h2> No movies imported </h2>
             </>}
         </MovieList>
-        <MovieList>
+        <MovieList variants = {fadeIn} initial='hidden' animate="show">
           <Link to="/upcoming">
             <h2>Up and Coming Movies</h2>
             <h4>View More:</h4>
@@ -65,7 +68,7 @@ const Home = () => {
             <h2> No movies imported </h2>
             </>}
         </MovieList>
-        <MovieList>
+        <MovieList variants = {fadeIn} initial='hidden' animate="show">
           <Link to="/toprated">
             <h2>Top Rated Movies</h2>
             <h4>View More:</h4>
@@ -83,13 +86,11 @@ const Home = () => {
             <h2> No movies imported </h2>
             </>}
         </MovieList>
-      </>
+      </div>
     )
 }
 
-  const MovieList = styled.div`
- 
-
+  const MovieList = styled(motion.div)`
 
   h2{
     margin-top: 2rem;
