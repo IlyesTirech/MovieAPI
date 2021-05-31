@@ -3,8 +3,9 @@ const BASE_URL = "https://api.themoviedb.org/3/"
 
 const BASE_IMG_URL = "https://image.tmdb.org/t/p/w500/"
 
-//API Key
-const KEY = "6579bc9ba84565fc456dc0712a6a43bf"
+//API KeY
+
+const KEY = '6579bc9ba84565fc456dc0712a6a43bf'
 
 //Popular Games
 const POPULAR_MOVIES = `movie/popular?api_key=${KEY}`
@@ -25,3 +26,7 @@ export const DetailsURL = (movie_id) => `${BASE_URL}/movie/${movie_id}?api_key=$
 export const DetailImages = (movie_id) => `${BASE_URL}/movie/${movie_id}/images?api_key=${KEY}`
 //Searched Movie
 export const searchMovieURL = (movie_name) => `${BASE_URL}search/movie?api_key=${KEY}&query=${movie_name}`
+
+export const creditsURL = (movie_id) => `${BASE_URL}/movie/${movie_id}/credits?api_key=${KEY}`
+
+export const videoURL = (movie_id) => `${BASE_URL}/movie/${movie_id}/videos?api_key=${KEY}`

@@ -52,7 +52,7 @@ const Home = () => {
         </MovieList>
         <MovieList variants = {fadeIn} initial='hidden' animate="show">
           <Link to="/upcoming">
-            <h2>Up and Coming Movies</h2>
+            <h2>Upcoming Movies</h2>
             <h4>View More:</h4>
           </Link>
           { upComing ?

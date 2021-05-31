@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import { FiSearch } from "react-icons/fi";
 //Redux 
 import {fetchSearched} from '../actions/moviesAction'
 import {useDispatch} from 'react-redux'
-import {Link, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {motion} from 'framer-motion'
 import {fadeIn} from '../animations'
 
@@ -31,9 +30,9 @@ const Search = () => {
         <StyledSearch variants = {fadeIn} initial='hidden' animate="show">           
             <form>
             <input value={textInput} onChange={inputHandler} type="text" placeholder="Search For Movies..." />
-            <Link to='/searched'>
+
             <button onClick={submitSearch} type="submit" >Search</button>
-            </Link>
+           
             </form>             
         </StyledSearch>
     )

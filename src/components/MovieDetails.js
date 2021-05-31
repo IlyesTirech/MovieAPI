@@ -6,7 +6,9 @@ import {fadeIn} from '../animations'
 import {useSelector, useDispatch} from 'react-redux'
 import {deleteDetail, loadDetail} from '../actions/detailAction'
 import {useLocation} from 'react-router-dom'
-import { useSetState } from 'react-use'
+
+//ReactPlayer
+import ReactPlayer from 'react-player'
 
 const MovieDetails = () => {
     
@@ -21,7 +23,7 @@ const MovieDetails = () => {
       },[])
 
     //Data
-    const {image,movie} = useSelector(state => state.detail);
+    const {image,movie, credits, videos} = useSelector(state => state.detail);
     
 
     return (
@@ -33,28 +35,55 @@ const MovieDetails = () => {
        
         <div>
             <h2>{movie.original_title}</h2>
+            {               
+                  videos.results ? 
+                  <VideoStyle>
+                      {
+                         
+                          videos.results.slice(0,1).map(video =>(
+                            <ReactPlayer  url={`https://www.youtube.com/watch?v=${video.key}`}/>
+                          ))
+                      }
+                  </VideoStyle>
+                  :
+                  <>
+                  
+                  </>
+                }   
             <h3>Release Date: {movie.release_date}</h3>
-            {
-                
+            {               
                   movie.genres ? 
                   <GenreStyle>
                        <h3 className='genre_title'>Genre:</h3>
-                      {
-                         
-                          movie.genres.map(genre =>(
+                      {                        
+                          movie.genres.slice(0,2).map(genre =>(
                               <h3 className='genre_name'> {genre.name},</h3>
                           ))
                       }
                   </GenreStyle>
                   :
                   <>
-                  <h2>No Genre</h2>
+                  
                   </>
                 }
                 
             <h3>{movie.overview}</h3>
    
-                     
+            {               
+                  credits.cast ? 
+                  <CastStyle>
+                       <h4 className='cast_title'>Cast: </h4>
+                      {
+                         
+                          credits.cast.slice(0,5).map(cast =>(
+                              <h4 className='genre_name'> {cast.name},</h4>
+                          ))
+                      }
+                  </CastStyle>
+                  :
+                  <>       
+                  </>
+                }        
            
            
                 
@@ -69,16 +98,12 @@ const MovieDetails = () => {
                   </MoviesStyle>
                   :
                   <>
-                  <h2>Loading...</h2>
+                 
                   </>
                 }
-            
-
-       
         </div>
         :
-        <>
-        <h2>Loading...</h2>
+        <>     
         </>
 
          }
@@ -106,12 +131,14 @@ h3{
     font-family: 'Montserrat', sans-serif;
     text-align: justify;
     
+    
 }
 h4{
    
     color: white;
     margin-bottom: 1rem;
     font-family: 'Montserrat', sans-serif;
+    
 }
 `
 const MoviesStyle = styled.div`
@@ -137,4 +164,18 @@ const MoviesStyle = styled.div`
     }
   `
 
+const CastStyle = styled.div`
+display: flex;
+.cast_title{
+    margin-right: 5px;
+}
+.genre_name{
+    margin-right: 5px;
+}
+`
+const VideoStyle = styled.div`
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+`
 export default MovieDetails

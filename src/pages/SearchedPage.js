@@ -5,27 +5,25 @@ import Movies from '../components/Movies'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 import {fadeIn} from '../animations'
-import {Redirect} from 'react-router-dom'
-
+import {useLocation} from 'react-router-dom'
 const SearchedPage = () => {
-    const {searched} = useSelector((state) => state.movies)
-    
+  const dispatch = useDispatch();
+  const {searched} = useSelector((state) => state.movies)
+  let location = useLocation();
+  let path = location.pathname.split(":")[1]
+
+  useEffect(() => {
+    dispatch(fetchSearched(path))
+  })
     return (
-      <>
-      {
-        searched.length > 0 ?
+      <SearchedPages>
+        <h2>Searched For <span>{path}</span> </h2>
         <MoviesStyle variants = {fadeIn} initial='hidden' animate="show">
         {searched.map(movie => (
              <Movies movie={movie} key={movie.id}/>
         ))}
        </MoviesStyle>
-       :
-       <>
-        <Redirect to='/'/>
-       </>
-      }
-        
-        </>
+        </SearchedPages>
     )
 }
 const MoviesStyle = styled(motion.div)`
@@ -35,5 +33,24 @@ const MoviesStyle = styled(motion.div)`
   padding: 40px;
   align-items: center;
   justify-content: center;
+  h2{
+    margin-top: 5rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #f3ce13;
+    font-size: 30px;
+  }
+  `
+  const SearchedPages = styled(motion.div)`
+  h2{
+    margin-top: 4rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #f3ce13;
+    font-size: 30px;
+  }
+  span{
+    text-decoration: underline;
+  }
   `
 export default SearchedPage

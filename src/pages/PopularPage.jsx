@@ -6,6 +6,7 @@ import Movies from "../components/Movies"
 import {motion} from 'framer-motion'
 import {fadeIn} from '../animations'
 const TopRatedPage = () => {
+  
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(loadMovies());
@@ -40,7 +41,7 @@ const TopRatedPage = () => {
 
 const PopularPageStyle = styled(motion.div)`
   h2{
-    margin-top: 5rem;
+    margin-top: 3rem;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     color: #f3ce13;

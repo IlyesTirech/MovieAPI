@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { loadMovies } from "../actions/moviesAction"
 import {useDispatch, useSelector} from 'react-redux'
 import Movies from "../components/Movies"
-import { faDivide } from '@fortawesome/free-solid-svg-icons'
 import {motion} from 'framer-motion'
 import {fadeIn} from '../animations'
 const TopRatedPage = () => {
@@ -39,7 +38,7 @@ const TopRatedPage = () => {
 
 const TopRatedStyle = styled(motion.div)`
   h2{
-    margin-top: 5rem;
+    margin-top: 3rem;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     color: #f3ce13;

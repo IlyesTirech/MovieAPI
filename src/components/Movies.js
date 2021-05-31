@@ -1,8 +1,6 @@
 import React from 'react'
 //Styling and Animations
 import styled from 'styled-components'
-import { loadMovies } from '../actions/moviesAction';
-import {imageURL} from "../api"
 import StarRatingComponent from 'react-star-rating-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useDispatch} from 'react-redux'
@@ -16,7 +14,7 @@ const Movies = ({movie}) => {
         dispatch(loadDetail(id))
     }
 
-    const {title, release_date, backdrop_path, vote_average, vote_count, id, genres} = movie
+    const {title, release_date, backdrop_path, vote_average, id, } = movie
     return(
         <Link to={{pathname: `/details/${id}`}}>
         <MoviesStyle onClick = { loadDetailHandler }>
@@ -57,14 +55,7 @@ const Movies = ({movie}) => {
                 
 
 const StarComp = ({rating}) => {
-    const halfStar = () =>{ 
-        if(Math.round(rating) < rating - 0.25){
-          
-            return true
-        }
-        
-        return false
-};
+ 
     return (
         <StarDiv>
             <StarRatingComponent 

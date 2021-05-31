@@ -39,7 +39,7 @@ const UpComingPage = () => {
 
 const UpcomingStyle = styled(motion.div)`
   h2{
-    margin-top: 5rem;
+    margin-top: 3rem;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     color: #f3ce13;

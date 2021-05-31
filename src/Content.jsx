@@ -40,7 +40,7 @@ const Content = () => {
                 <Route  path="/upcoming">
                     <UpComing/>
                 </Route>
-                <Route  path="/searched">
+                <Route  path="/searched:textInput">
                     <SearchedPage/>
                 </Route>
 
